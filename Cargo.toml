@@ -1,0 +1,77 @@
+[package]
+name = "yew-app"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+yew = {version = "0.18.0", features = ["default", "toml"]}
+anyhow = "1"
+chrono = {version = "0.4", features = ["serde"]}
+chrono-tz = "0.4"
+gloo-timers = "0.2"
+instant = { version = "0.1", features = [ "wasm-bindgen", "inaccurate" ] }
+geojson = "0.22.0"
+graphql_client = {version = "0.9", features = ["web"]}
+regex = "1"
+js-sys = "0.3"
+log = "0.4"
+serde = {version = "1", features = ["derive"]}
+serde_derive = "1"
+serde_json = "1"
+uuid = {version = "0.8", features = ["serde", "v4", "v5", "wasm-bindgen"]}
+wasm-bindgen = {version = "0.2", features = ["serde-serialize"]}
+wasm-bindgen-futures = "0.4"
+wasm-logger = "0.2"
+urlencoding = "1.1.1"
+lazy_static = "1.4.0"
+dotenv_codegen = "0.15.0"
+
+[dependencies.web-sys]
+features = [
+  "Document",
+  "Headers",
+  "Request",
+  "RequestInit",
+  "RequestMode",
+  "Response",
+  "Window",
+  "Element",
+  "DomTokenList",
+  "HtmlSelectElement",
+  "HtmlDocument",
+  "HtmlMediaElement",
+  "HtmlElement",
+  "Navigator",
+  "Geolocation",
+  "PositionOptions",
+  "BinaryType",
+  "Blob",
+  "ErrorEvent",
+  "CloseEvent",
+  "FileReader",
+  "MessageEvent",
+  "ProgressEvent",
+  "FocusEvent",
+  "WebSocket",
+]
+optional = true
+version = "0.3"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.2"
+
+[features]
+default = ["web_sys"]
+web_sys = ["web-sys", "yew/web_sys"]
+
+[profile.release]
+# less code to include into binary
+panic = 'abort' 
+# optimization over all codebase ( better optimization, slower build )
+codegen-units = 1
+# optimization for size ( more aggressive )
+opt-level = 'z' 
+# optimization for size 
+# opt-level = 's' 
+# link time optimization using using whole-program analysis
+lto = true
