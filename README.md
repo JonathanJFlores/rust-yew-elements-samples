@@ -1,4 +1,4 @@
-# rust-yew-element-samples
+# rust-yew-elements-samples
 
 ## Install [Rust](https://www.rust-lang.org/)
 
